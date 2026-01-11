@@ -1,0 +1,578 @@
+html, body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+:root {
+  --neon: #5eead4;
+  --purple: #8b5cf6;
+  --glass: rgba(255,255,255,0.08);
+  --border: rgba(255,255,255,0.15);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at top, #0f172a, #020617);
+  font-family: system-ui, sans-serif;
+  color: #e5e7eb;
+}
+
+/* CONTAINER */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* NAVBAR */
+.navbar {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 64px;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(14px);
+  z-index: 1000;
+}
+
+.logo { font-size: 22px; font-weight: 700; }
+.logo span { color: var(--neon); }
+
+.nav-links a {
+  margin-left: 20px;
+  color: #cbd5f5;
+  text-decoration: none;
+}
+
+.menu-toggle {
+  display: none;
+  font-size: 26px;
+  cursor: pointer;
+}
+
+/* MOBILE MENU */
+.mobile-menu {
+  position: fixed;
+  top: 64px;
+  right: 16px;
+  display: none;
+  background: rgba(0,0,0,0.9);
+  border-radius: 14px;
+  padding: 16px;
+  z-index: 1200;
+}
+
+.mobile-menu a {
+  display: block;
+  padding: 10px;
+  color: white;
+  text-decoration: none;
+}
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  padding-top: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+}
+
+.hero-content { z-index: 5; }
+
+.hero h1 { font-size: 56px; }
+.hero h1 span {
+  background: linear-gradient(90deg, var(--neon), var(--purple));
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.hero p { margin: 20px 0; color: #cbd5f5; }
+
+.hero-glow {
+  position: absolute;
+  inset: -20%;
+  background: radial-gradient(circle, var(--purple), transparent 70%);
+  filter: blur(160px);
+  pointer-events: none;
+}
+
+/* BUTTONS */
+.btn {
+  padding: 14px 28px;
+  border-radius: 30px;
+  border: 1px solid var(--border);
+  background: var(--glass);
+  color: white;
+  cursor: pointer;
+  margin: 6px;
+}
+
+.btn.primary {
+  background: linear-gradient(90deg, var(--neon), var(--purple));
+  color: #020617;
+  font-weight: 700;
+}
+
+.btn.big { width: 100%; }
+
+/* SECTIONS */
+section {
+  padding: 120px 0;
+}
+
+/* FEATURES */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+  gap: 30px;
+}
+
+.card {
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 30px;
+  text-align: center;
+}
+
+/* DEMO */
+.demo { text-align: center; }
+.demo-box {
+  margin-top: 30px;
+  padding: 60px;
+  border-radius: 20px;
+  background: var(--glass);
+}
+
+/* PRICING */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+  gap: 32px;
+}
+
+.price-card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));
+  border-radius: 24px;
+  padding: 40px 30px;
+  position: relative;
+}
+
+.price { font-size: 34px; margin: 16px 0; }
+
+.price-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.price-card ul li {
+  margin-bottom: 10px;
+  color: #cbd5f5;
+}
+
+.highlight {
+  border: 2px solid var(--neon);
+}
+
+.badge {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, var(--neon), var(--purple));
+  color: #020617;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+}
+
+/* CTA */
+.cta {
+  text-align: center;
+}
+
+.cta-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+/* MODAL (FIXED & ACCESSIBLE) */
+.modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+.modal.active {
+  display: flex;
+}
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.8);
+}
+
+.modal-box {
+  position: relative;
+  z-index: 2;
+  width: 90%;
+  max-width: 420px;
+  padding: 36px;
+  border-radius: 24px;
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.16),
+    rgba(255,255,255,0.08)
+  );
+  backdrop-filter: blur(24px);
+}
+
+.modal-box h2 {
+  margin-bottom: 16px;
+}
+
+.modal-box input,
+.modal-box select {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.25);
+  background: rgba(0,0,0,0.35);
+  color: white;
+}
+
+.modal-box input::placeholder {
+  color: #9ca3af;
+}
+
+.close-modal {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  font-size: 26px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 30px;
+  color: #94a3b8;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .menu-toggle { display: block; }
+  .hero h1 { font-size: 40px; }
+  .container { padding: 0 16px; }
+}
+
+
+/* ---------- DEMO VIDEO ---------- */
+
+.video-wrapper {
+  position: relative;
+  max-width: 720px;
+  margin: 40px auto 0;
+  border-radius: 20px;
+  overflow: hidden;
+  background: rgba(0,0,0,0.6);
+}
+
+.video-wrapper video {
+  width: 100%;
+  display: block;
+  border-radius: 20px;
+}
+
+/* Play button */
+.video-play-btn {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0,0,0,0.6);
+  color: white;
+  font-size: 32px;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.video-play-btn:hover {
+  transform: scale(1.08);
+  background: rgba(0,0,0,0.75);
+}
+
+/* Hide button when playing */
+.video-wrapper.playing .video-play-btn {
+  display: none;
+}
+
+/* ---------- MOBILE SPACING FIX ---------- */
+@media (max-width: 768px) {
+  section {
+    padding: 64px 0;
+  }
+
+  /* Hero needs a bit more breathing room */
+  .hero {
+    padding-top: 96px;
+    padding-bottom: 64px;
+  }
+
+  /* Reduce demo & CTA spacing slightly */
+  .demo,
+  .cta {
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+}
+
+/* ---------- MOBILE SPACING FIX ---------- */
+@media (max-width: 768px) {
+  section {
+    padding: 64px 0;
+  }
+
+  /* Hero needs a bit more breathing room */
+  .hero {
+    padding-top: 96px;
+    padding-bottom: 64px;
+  }
+
+  /* Reduce demo & CTA spacing slightly */
+  .demo,
+  .cta {
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+}
+/* ===============================
+   FUTURISTIC CARDS
+================================ */
+
+.card,
+.price-card {
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.card:hover,
+.price-card:hover {
+  transform: translateY(-8px);
+  box-shadow:
+    0 10px 40px rgba(139,92,246,0.25),
+    0 0 40px rgba(94,234,212,0.15);
+}
+/* ===============================
+   SECTION HEADING GLOW
+================================ */
+
+section h2 {
+  position: relative;
+  display: inline-block;
+}
+
+section h2::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--neon), var(--purple));
+  border-radius: 6px;
+  opacity: 0.8;
+}
+/* ===============================
+   FUTURISTIC BUTTON FEEL
+================================ */
+
+.btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.25),
+    transparent
+  );
+  transform: translateX(-100%);
+}
+
+.btn:hover::after {
+  transform: translateX(100%);
+  transition: transform 0.6s ease;
+}
+
+.btn:hover {
+  box-shadow: 0 0 30px rgba(94,234,212,0.35);
+}
+
+/* ===============================
+   HERO TEXT ENHANCEMENT
+================================ */
+
+.hero h1 {
+  text-shadow:
+    0 0 20px rgba(139,92,246,0.25),
+    0 0 40px rgba(94,234,212,0.15);
+}
+
+/* =================================================
+   FUTURISTIC VISUAL ENHANCEMENTS (SAFE ADD-ON)
+   Can be removed anytime without breaking layout
+================================================= */
+
+/* Ambient futuristic background glow */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(94,234,212,0.08), transparent 40%),
+    radial-gradient(circle at 85% 30%, rgba(139,92,246,0.08), transparent 40%),
+    radial-gradient(circle at 50% 85%, rgba(94,234,212,0.06), transparent 45%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Section heading accent */
+section h2 {
+  position: relative;
+  display: inline-block;
+}
+
+section h2::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--neon), var(--purple));
+  border-radius: 6px;
+  opacity: 0.8;
+}
+
+/* Card depth & hover life */
+.card,
+.price-card {
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.card:hover,
+.price-card:hover {
+  transform: translateY(-8px);
+  box-shadow:
+    0 12px 40px rgba(139,92,246,0.25),
+    0 0 40px rgba(94,234,212,0.15);
+}
+
+/* Hero title glow */
+.hero h1 {
+  text-shadow:
+    0 0 20px rgba(139,92,246,0.25),
+    0 0 40px rgba(94,234,212,0.15);
+}
+
+/* Button light-sweep effect */
+.btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.25),
+    transparent
+  );
+  transform: translateX(-100%);
+}
+
+.btn:hover::after {
+  transform: translateX(100%);
+  transition: transform 0.6s ease;
+}
+
+.btn:hover {
+  box-shadow: 0 0 28px rgba(94,234,212,0.35);
+}
+
+/* Mobile-safe tuning */
+@media (max-width: 768px) {
+  section h2::after {
+    width: 80%;
+  }
+
+  .card:hover,
+  .price-card:hover {
+    transform: none; /* avoid jump on touch */
+  }
+}
+/* ---------- MOBILE HERO BUTTON STACK ---------- */
+/* ---------- MOBILE HERO BUTTON HIERARCHY ---------- */
+@media (max-width: 768px) {
+  .hero-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  /* Primary CTA – bigger */
+  .hero-buttons .btn.primary {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  /* Secondary CTA – slightly smaller */
+  .hero-buttons .watch-demo {
+    width: 100%;
+    max-width: 240px;
+    opacity: 0.9;
+  }
+}
+
