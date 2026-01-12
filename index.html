@@ -129,7 +129,22 @@
   </div>
 </section>
 
-<footer>© 2026 SmartPlatter · Built for the future</footer>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <span>© 2026 SmartPlatter · Built for the future</span>
+    <span class="footer-links">
+      <a href="privacy.html" target="_blank" rel="noopener noreferrer">
+        Privacy Policy
+      </a>
+      ·
+      <a href="refund.html" target="_blank" rel="noopener noreferrer">
+        Refund & Cancellation
+      </a>
+    </span>
+  </div>
+</footer>
+
+
 
 <!-- MODAL -->
 <div class="modal" id="earlyAccessModal" aria-hidden="true">
@@ -140,10 +155,8 @@
     <h2>Get Early Access 🚀</h2>
 
     <form
-      name="early-access"
+      action="https://formspree.io/f/xeeeqozo"
       method="POST"
-      data-netlify="true"
-      data-netlify-honeypot="bot-field"
       id="earlyAccessForm"
     >
       <input type="hidden" name="form-name" value="early-access" />
@@ -156,6 +169,8 @@
       <input type="text" name="owner_name" placeholder="Owner Name" required />
       <input type="email" name="email" placeholder="Email Address" required />
       <input type="tel" name="whatsapp" placeholder="WhatsApp Number" required />
+      <input type="text" name="_gotcha" style="display:none">
+
 
       <select name="tables" required>
         <option value="">Number of Tables</option>
